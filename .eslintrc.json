@@ -12,7 +12,8 @@
     "parserOptions": {
         "project": "./tsconfig.json",
         "ecmaFeatures": {
-            "jsx": true
+            "jsx": true,
+            "modules": true
         },
         "ecmaVersion": 12,
         "sourceType": "module",
@@ -23,5 +24,26 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "@typescript-eslint/semi": [0],
+        "@typescript-eslint/indent": [0],
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "indent": [1, 4, {
+            "SwitchCase": 1
+        }],
+        "semi": [2, "never"],
+        "arrow-parens": "off",
+        "quotes": [2, "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
+        "no-shadow": "warn",
+        "no-tabs": ["error", { "allowIndentationTabs": true }],
+        "import/no-extraneous-dependencies": "off",
+        "import/prefer-default-export": "off",
+        "no-trailing-spaces": ["error", { "skipBlankLines": true }],
+        "react/prop-types": 0,
+        "no-return-await": "off",
+//        "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
+        "react/function-component-definition": 0,
+        "react/jsx-indent": 0
     }
 }
