@@ -5,13 +5,17 @@ import { RouteNames } from './routes'
 
 import { Layout } from './containers/Layout/Layout'
 import { HomePage } from './pages/HomePage/HomePage'
-import { LoginPage } from './pages/LoginPage/LoginPage'
+import { LoginPage } from './pages/AuthPages/LoginPage'
 import { ProfilePage } from './pages/ProfilePage/ProfilePage'
 import { UiKitPage } from './pages/UiKitPage/UiKitPage'
 import { PageNotFound } from './pages/PageNotFound/PageNotFound'
 
-import './main.scss'
 import { AuthContainer } from './containers/AuthContainer/AuthContainer'
+import { RegisterPage } from './pages/AuthPages/RegisterPage'
+import { RecoveryPassPage } from './pages/AuthPages/RecoveryPassPage'
+import { CreateNewPassPage } from './pages/AuthPages/CreateNewPassPage'
+
+import './main.scss'
 
 function App() {
     return (
@@ -21,9 +25,9 @@ function App() {
                     <Route index element={<HomePage />} />
                     <Route path={RouteNames.AUTH} element={<AuthContainer />}>
                         <Route path={RouteNames.LOGIN} element={<LoginPage />} />
-                        <Route path={RouteNames.REGISTER} element={<LoginPage />} />
-                        <Route path={RouteNames.RECOVERY} element={<LoginPage />} />
-                        <Route path={RouteNames.NEW_PASSWORD} element={<LoginPage />} />
+                        <Route path={RouteNames.REGISTER} element={<RegisterPage />} />
+                        <Route path={RouteNames.RECOVERY} element={<RecoveryPassPage />} />
+                        <Route path={RouteNames.NEW_PASSWORD} element={<CreateNewPassPage />} />
                     </Route>
                     <Route path={RouteNames.PROFILE} element={<ProfilePage />} />
                     <Route path={RouteNames.UI_KIT} element={<UiKitPage />} />

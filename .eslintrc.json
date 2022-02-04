@@ -32,7 +32,17 @@
         "@typescript-eslint/no-unused-vars": [1, { "vars": "local" }],
         "default-param-last": "off",
         "@typescript-eslint/default-param-last": 0,
+        "react/require-default-props": 0,
+        "react/jsx-props-no-spreading": 0,
+        "react/jsx-indent-props": 0,
         "no-unused-vars": "off",
+        "max-len": ["error", {
+            "code": 120,
+            "ignoreTemplateLiterals": true,
+            "ignoreStrings": true,
+            "ignoreComments": true,
+            "ignoreTrailingComments": true
+        }],
         "indent": [1, 4, {
             "SwitchCase": 1
         }],
