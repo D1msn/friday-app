@@ -12,19 +12,27 @@ export const Layout = () => (
                     <StyledNavLink to={RouteNames.HOME}>Home</StyledNavLink>
                 </li>
                 <li>
-                    <StyledNavLink to={RouteNames.REGISTER}>Register</StyledNavLink>
+                    <StyledNavLink to={`${RouteNames.AUTH}/${RouteNames.REGISTER}`}>
+                        Register
+                    </StyledNavLink>
                 </li>
                 <li>
-                    <StyledNavLink to={RouteNames.LOGIN}>Login</StyledNavLink>
+                    <StyledNavLink to={`${RouteNames.AUTH}/${RouteNames.LOGIN}`}>
+                        Login
+                    </StyledNavLink>
+                </li>
+                <li>
+                    <StyledNavLink to={`${RouteNames.AUTH}/${RouteNames.RECOVERY}`}>
+                        Password recovery
+                    </StyledNavLink>
+                </li>
+                <li>
+                    <StyledNavLink to={`${RouteNames.AUTH}/${RouteNames.NEW_PASSWORD}`}>
+                        New password
+                    </StyledNavLink>
                 </li>
                 <li>
                     <StyledNavLink to={RouteNames.PROFILE}>Profile</StyledNavLink>
-                </li>
-                <li>
-                    <StyledNavLink to={RouteNames.RECOVERY}>Password recovery</StyledNavLink>
-                </li>
-                <li>
-                    <StyledNavLink to={RouteNames.NEW_PASSWORD}>New password</StyledNavLink>
                 </li>
                 <li>
                     <StyledNavLink to={RouteNames.PAGE_NOT_FOUND}>404 page</StyledNavLink>

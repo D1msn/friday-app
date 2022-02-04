@@ -1,7 +1,8 @@
 import React from 'react'
+import { AuthContainerWrapper } from './AuthContainer.styled'
 
 export const AuthContainer = () => (
-    <div>
+    <AuthContainerWrapper>
             AuthContainer
-    </div>
+    </AuthContainerWrapper>
 )
