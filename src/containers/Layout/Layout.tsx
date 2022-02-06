@@ -1,7 +1,7 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { RouteNames } from '../../routes'
-import { StyledNavLink } from '../../styles/StyledNavLink'
+import { StyledNavLinkStyled } from '../../styles/StyledNavLink.styled'
 import { StyledHeader } from './Layout.styled'
 
 export const Layout = () => (
@@ -9,36 +9,41 @@ export const Layout = () => (
         <StyledHeader>
             <ul>
                 <li>
-                    <StyledNavLink to={RouteNames.HOME}>Home</StyledNavLink>
+                    <StyledNavLinkStyled to={RouteNames.HOME}>Home</StyledNavLinkStyled>
                 </li>
                 <li>
-                    <StyledNavLink to={`${RouteNames.AUTH}/${RouteNames.REGISTER}`}>
+                    <StyledNavLinkStyled to={`${RouteNames.AUTH}/${RouteNames.REGISTER}`}>
                         Register
-                    </StyledNavLink>
+                    </StyledNavLinkStyled>
                 </li>
                 <li>
-                    <StyledNavLink to={`${RouteNames.AUTH}/${RouteNames.LOGIN}`}>
+                    <StyledNavLinkStyled to={`${RouteNames.AUTH}/${RouteNames.LOGIN}`}>
                         Login
-                    </StyledNavLink>
+                    </StyledNavLinkStyled>
                 </li>
                 <li>
-                    <StyledNavLink to={`${RouteNames.AUTH}/${RouteNames.RECOVERY}`}>
+                    <StyledNavLinkStyled to={`${RouteNames.AUTH}/${RouteNames.RECOVERY}`}>
                         Password recovery
-                    </StyledNavLink>
+                    </StyledNavLinkStyled>
                 </li>
                 <li>
-                    <StyledNavLink to={`${RouteNames.AUTH}/${RouteNames.NEW_PASSWORD}`}>
+                    <StyledNavLinkStyled to={`${RouteNames.AUTH}/${RouteNames.EMAIL_SEND_PAGE}`}>
+                        Password recovery
+                    </StyledNavLinkStyled>
+                </li>
+                <li>
+                    <StyledNavLinkStyled to={`${RouteNames.AUTH}/${RouteNames.NEW_PASSWORD}`}>
                         New password
-                    </StyledNavLink>
+                    </StyledNavLinkStyled>
                 </li>
                 <li>
-                    <StyledNavLink to={RouteNames.PROFILE}>Profile</StyledNavLink>
+                    <StyledNavLinkStyled to={RouteNames.PROFILE}>Profile</StyledNavLinkStyled>
                 </li>
                 <li>
-                    <StyledNavLink to={RouteNames.PAGE_NOT_FOUND}>404 page</StyledNavLink>
+                    <StyledNavLinkStyled to={RouteNames.PAGE_NOT_FOUND}>404 page</StyledNavLinkStyled>
                 </li>
                 <li>
-                    <StyledNavLink to={RouteNames.UI_KIT}>Ui-kit</StyledNavLink>
+                    <StyledNavLinkStyled to={RouteNames.UI_KIT}>Ui-kit</StyledNavLinkStyled>
                 </li>
             </ul>
         </StyledHeader>

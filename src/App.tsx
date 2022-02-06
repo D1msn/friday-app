@@ -16,6 +16,7 @@ import { RecoveryPassPage } from './pages/AuthPages/RecoveryPassPage'
 import { CreateNewPassPage } from './pages/AuthPages/CreateNewPassPage'
 
 import './main.scss'
+import { EmailSendPage } from './pages/AuthPages/EmailSendPage'
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
                         <Route path={RouteNames.LOGIN} element={<LoginPage />} />
                         <Route path={RouteNames.REGISTER} element={<RegisterPage />} />
                         <Route path={RouteNames.RECOVERY} element={<RecoveryPassPage />} />
+                        <Route path={RouteNames.EMAIL_SEND_PAGE} element={<EmailSendPage />} />
                         <Route path={RouteNames.NEW_PASSWORD} element={<CreateNewPassPage />} />
                     </Route>
                     <Route path={RouteNames.PROFILE} element={<ProfilePage />} />

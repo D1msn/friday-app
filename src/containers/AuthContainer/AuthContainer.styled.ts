@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const AuthContainerWrapper = styled.div`
-  padding: 20px 30px;
+  padding: 20px 30px 40px 30px;
   display: flex;
   flex-direction: column;
   align-items: center;

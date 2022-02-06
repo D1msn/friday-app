@@ -1,10 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;400;700&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
 
 h1{
   font-weight: 600;
   font-size: 26px;
   line-height: 39px;
   color: #2D2E46;
+}
+
+button{
+  letter-spacing: 1px;
+  font-family: 'Poppins', sans-serif;
 }
 
 h2{
@@ -32,4 +38,21 @@ h2{
   width: 100%;
   display: flex;
   flex: 1 1 auto;
+}
+
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

@@ -8,4 +8,5 @@ export enum RouteNames {
     NEW_PASSWORD = 'new-password',
     UI_KIT = 'ui-kit',
     PAGE_NOT_FOUND = '404',
+    EMAIL_SEND_PAGE = 'send-email',
 }
