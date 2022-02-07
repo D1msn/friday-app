@@ -17,8 +17,15 @@ import { CreateNewPassPage } from './pages/AuthPages/CreateNewPassPage'
 
 import './main.scss'
 import { EmailSendPage } from './pages/AuthPages/EmailSendPage'
+import { useGetPingQuery } from './core/api/authApi'
+
+const date = Date.now()
 
 function App() {
+    const { data, isLoading } = useGetPingQuery(date)
+    if (isLoading) {
+        return <div>Loading..........</div>
+    }
     return (
         <div className="app-wrapper">
             <Routes>
