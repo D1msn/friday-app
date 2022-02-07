@@ -4,12 +4,10 @@ import Button from '../../components/common/Button/Button'
 import { AuthBodyWrapperStyled } from '../../styles/AuthBodyWrapper.styled'
 import { FormWrapper } from '../../styles/FormWrapper.styled'
 import InputText from '../../components/common/InputText/InputText'
+import { grayText } from '../../styles/utils.styles'
 
 const Text = styled.p`
-  font-size: 14px;
-  line-height: 24px;
-  color: #2D2E46;
-  opacity: 0.5; 
+  ${grayText};
   margin: 20px 0 90px 0;
   max-width: 350px;
 `

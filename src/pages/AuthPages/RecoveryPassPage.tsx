@@ -6,12 +6,10 @@ import InputText from '../../components/common/InputText/InputText'
 import { FormWrapper } from '../../styles/FormWrapper.styled'
 import { AuthLinkText } from '../../styles/StyledNavLink.styled'
 import { RouteNames } from '../../routes'
+import { grayText } from '../../styles/utils.styles'
 
 const Text = styled.p`
-  font-size: 16px;
-  line-height: 24px;
-  color: #2D2E46;
-  opacity: 0.5; 
+  ${grayText};
   margin-top: 30px;
   max-width: 350px;
 `
