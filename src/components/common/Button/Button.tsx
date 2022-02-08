@@ -6,14 +6,15 @@ type SuperButtonPropsType = ComponentProps<typeof StyledButton> & {
     variant?: 'blue' | 'light-blue' | 'red'
     loading?: boolean
     submit?: boolean
+    disabled?: boolean
 }
 
 const Button: React.FC<SuperButtonPropsType> = ({
-    loading = false, variant = 'blue', className = '', submit, ...restProps
+    loading = false, variant = 'blue', className = '', submit, disabled, ...restProps
 }) => (
     <StyledButton
         className={`${variant} ${className}`}
-        disabled={loading}
+        disabled={loading || disabled}
         type={submit ? 'submit' : 'button'}
         {...restProps} // отдаём кнопке остальные пропсы если они есть (children там внутри)
     >

@@ -29,6 +29,7 @@ export const StyledButton = styled.button`
     pointer-events: none;
     padding: 0;
     background-color: #d3d3d3 !important;
+    color: #666666;
     box-shadow: none;
     svg{
       height: 37px;
