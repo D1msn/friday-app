@@ -1,19 +1,23 @@
-import React, { ButtonHTMLAttributes, DetailedHTMLProps } from 'react'
-import s from './Button.module.scss'
+import React, { ComponentProps } from 'react'
+import { ReactComponent as ButtonLoader } from '../../../assets/image/button-loader.svg'
+import { StyledButton } from './Button.styled'
 
-// тип пропсов обычной кнопки, children в котором храниться название кнопки там уже описан
-type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
-
-type SuperButtonPropsType = DefaultButtonPropsType & {
+type SuperButtonPropsType = ComponentProps<typeof StyledButton> & {
     variant?: 'blue' | 'light-blue' | 'red'
+    loading?: boolean
 }
 
-const Button: React.FC<SuperButtonPropsType> = ({ variant = 'blue', className = '', ...restProps }) => (
-    <button
+const Button: React.FC<SuperButtonPropsType> = ({
+    loading = false, variant = 'blue', className = '', ...restProps
+}) => (
+    <StyledButton
         type="button"
-        className={`${s.button} ${s[variant]} ${className}`}
+        className={`${variant} ${className}`}
+        disabled={loading}
         {...restProps} // отдаём кнопке остальные пропсы если они есть (children там внутри)
-    />
+    >
+        {loading ? <ButtonLoader /> : restProps.children}
+    </StyledButton>
 )
 
 export default Button
