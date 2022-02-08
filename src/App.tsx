@@ -22,10 +22,6 @@ import { useGetPingQuery } from './core/api/authApi'
 const date = Date.now()
 
 function App() {
-    const { data, isLoading } = useGetPingQuery(date)
-    if (isLoading) {
-        return <div>Loading..........</div>
-    }
     return (
         <div className="app-wrapper">
             <Routes>

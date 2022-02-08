@@ -12,14 +12,12 @@ export type SuperInputTextPropsType = ComponentProps<typeof StyledInput> & {
     password?: boolean
 }
 
-const InputText: React.FC<SuperInputTextPropsType> = (
-    {
-        password = false,
-        onChange, onChangeText,
-        onKeyPress, onEnter,
-        ...restProps
-    },
-) => {
+const InputText: React.FC<SuperInputTextPropsType> = React.forwardRef(({
+    password = false,
+    onChange, onChangeText,
+    onKeyPress, onEnter,
+    ...restProps
+}, forwardedRef) => {
     const [showPass, setShowPass] = useState(false)
 
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,15 +32,16 @@ const InputText: React.FC<SuperInputTextPropsType> = (
     return (
         <>
             <StyledInput
-                type={showPass ? 'text' : 'password'}
+                type={showPass || !password ? 'text' : 'password'}
                 onChange={onChangeCallback}
                 onKeyPress={onKeyPressCallback}
                 password={password}
+                ref={forwardedRef}
                 {...restProps}
             />
             {password && <ShowPass className="unselectable" onClick={() => setShowPass(!showPass)}>{showPass ? 'Скрыть' : 'Показать'}</ShowPass>}
         </>
     )
-}
+})
 
 export default InputText

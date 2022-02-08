@@ -58,6 +58,7 @@
         "no-return-await": "off",
 //        "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
         "react/function-component-definition": 0,
-        "react/jsx-indent": 0
+        "react/jsx-indent": 0,
+        "no-debugger": 0
     }
 }
