@@ -24,6 +24,14 @@ export const StyledInput = styled.input<{ password?: boolean }>`
   transition: 0.3s all ease;
   padding-right: ${props => (props.password && '76px')};
   
+  &:disabled{
+    & + ${ShowPass}{
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: default;
+    }
+  }
+  
   &.password{
     padding-right: 56px;
   }

@@ -1,18 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
+import styled from 'styled-components'
 
 import { ErrorMessage } from '@hookform/error-message'
 import Button from '../../components/common/Button/Button'
 import InputText from '../../components/common/InputText/InputText'
 
-import { LocationState } from '../../routes'
+import { LocationState, RouteNames } from '../../routes'
 
 import { AuthBodyWrapperStyled } from '../../styles/AuthBodyWrapper.styled'
 import { FormWrapper } from '../../styles/FormWrapper.styled'
 import { ButtonBlock } from '../../styles/ButtonBlock.styled'
+import { useRegisterUserMutation } from '../../core/api/auth-api/auth-api'
+import { RegisterUserModel } from '../../core/types/authModel.types'
+
+const ErrorText = styled.p`
+  color: red;
+  margin-top: 20px;
+  font-size: 16px;
+`
 
 type RegisterFormType = {
     email: string
@@ -27,8 +36,11 @@ const schema = yup.object({
 }).required()
 
 export const RegisterPage = () => {
+    const [registerError, setRegisterError] = useState('')
+    const [registerUser, { isLoading }] = useRegisterUserMutation()
+
     const {
-        register, handleSubmit, formState: { errors, isValid, isSubmitting },
+        register, handleSubmit, reset, formState: { errors, isValid },
     } = useForm<RegisterFormType>({
         mode: 'onBlur',
         resolver: yupResolver(schema),
@@ -39,12 +51,28 @@ export const RegisterPage = () => {
 
     const fromPage = (location.state as LocationState)?.from?.pathname || '/'
 
+    const onSubmitRegister = async (data: RegisterFormType) => {
+        const registerModel: RegisterUserModel = {
+            email: data.email,
+            password: data.password,
+        }
+        try {
+            await registerUser(registerModel).unwrap()
+            navigate(`/${RouteNames.AUTH}/${RouteNames.LOGIN}`)
+        } catch (e: any) {
+            setRegisterError(e.data.error)
+        } finally {
+            reset()
+        }
+    }
+
     return (
-        <AuthBodyWrapperStyled onSubmit={handleSubmit(d => console.log(d))}>
+        <AuthBodyWrapperStyled onSubmit={handleSubmit(onSubmitRegister)}>
             <h2>Sign Up</h2>
             <FormWrapper>
                 <li className="form-row">
                     <InputText
+                        disabled={isLoading}
                         placeholder="Email"
                         {...register('email')}
                     />
@@ -52,6 +80,7 @@ export const RegisterPage = () => {
                 </li>
                 <li className="form-row">
                     <InputText
+                        disabled={isLoading}
                         password
                         placeholder="Password"
                         {...register('password')}
@@ -60,6 +89,7 @@ export const RegisterPage = () => {
                 </li>
                 <li className="form-row">
                     <InputText
+                        disabled={isLoading}
                         password
                         placeholder="Confirm password"
                         {...register('confirmPass')}
@@ -67,6 +97,9 @@ export const RegisterPage = () => {
                     <ErrorMessage name="confirmPass" errors={errors} render={({ message }) => <p>{message}</p>} />
                 </li>
             </FormWrapper>
+
+            {registerError && <ErrorText>{registerError}</ErrorText>}
+
             <ButtonBlock gap={36} style={{ marginTop: 'auto' }}>
                 <Button
                     variant="light-blue"
@@ -77,7 +110,7 @@ export const RegisterPage = () => {
 
                 <Button
                     disabled={!isValid}
-                    loading={isSubmitting}
+                    loading={isLoading}
                     submit
                     style={{ flexGrow: 1 }}
                 >
