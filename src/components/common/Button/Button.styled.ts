@@ -27,7 +27,6 @@ export const StyledButton = styled.button`
     opacity: 0.6;
     cursor: default;
     pointer-events: none;
-    padding: 0;
     background-color: #d3d3d3 !important;
     color: #666666;
     box-shadow: none;

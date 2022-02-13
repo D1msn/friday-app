@@ -10,3 +10,9 @@ export enum RouteNames {
     PAGE_NOT_FOUND = '404',
     EMAIL_SEND_PAGE = 'send-email',
 }
+
+export interface LocationState {
+    from: {
+        pathname: string;
+    };
+}

@@ -1,11 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import * as yup from 'yup'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+
+import { ErrorMessage } from '@hookform/error-message'
 import Button from '../../components/common/Button/Button'
-import { AuthBodyWrapperStyled } from '../../styles/AuthBodyWrapper.styled'
-import { FormWrapper } from '../../styles/FormWrapper.styled'
 import InputText from '../../components/common/InputText/InputText'
 import { RouteNames } from '../../routes'
+
+import { AuthBodyWrapperStyled } from '../../styles/AuthBodyWrapper.styled'
+import { FormWrapper } from '../../styles/FormWrapper.styled'
 import { AuthLinkText } from '../../styles/StyledNavLink.styled'
 
 const GrayText = styled.p`
@@ -34,20 +40,60 @@ const Forgot = styled(Link)`
 type LoginPagePropsTypes = {
 
 };
-export const LoginPage = (props: LoginPagePropsTypes) => (
-    <AuthBodyWrapperStyled>
-        <h2>Sign In</h2>
-        <LoginFormWrapper>
-            <li className="form-row">
-                <InputText placeholder="Email" />
-            </li>
-            <li className="form-row">
-                <InputText password placeholder="Password" />
-            </li>
-        </LoginFormWrapper>
-        <Forgot to={`/${RouteNames.AUTH}/${RouteNames.RECOVERY}`}>Forgot Password</Forgot>
-        <LoginBtn>Login</LoginBtn>
-        <GrayText>Don’t have an account?</GrayText>
-        <AuthLinkText to={`/${RouteNames.AUTH}/${RouteNames.REGISTER}`}>Sign Up</AuthLinkText>
-    </AuthBodyWrapperStyled>
-)
+
+type LoginFormType = {
+    email: string
+    password: string
+}
+
+const schema = yup.object({
+    email: yup.string().email().required(),
+    password: yup.string().required(),
+}).required()
+
+export const LoginPage = (props: LoginPagePropsTypes) => {
+    const {
+        register, handleSubmit, formState: { errors, isValid, isSubmitting },
+    } = useForm<LoginFormType>({
+        mode: 'onBlur',
+        resolver: yupResolver(schema),
+    })
+
+    const location = useLocation()
+
+    return (
+        <AuthBodyWrapperStyled onSubmit={handleSubmit(d => console.log(d))}>
+            <h2>Sign In</h2>
+            <LoginFormWrapper>
+                <li className="form-row">
+                    <InputText
+                        placeholder="Email"
+                        {...register('email')}
+                    />
+                    <ErrorMessage name="email" errors={errors} render={({ message }) => <p>{message}</p>} />
+                </li>
+                <li className="form-row">
+                    <InputText
+                        password
+                        placeholder="Password"
+                        {...register('password')}
+                    />
+                </li>
+            </LoginFormWrapper>
+
+            <Forgot to={`/${RouteNames.AUTH}/${RouteNames.RECOVERY}`}>Forgot Password</Forgot>
+
+            <LoginBtn disabled={!isValid} loading={isSubmitting} submit> Login </LoginBtn>
+
+            <GrayText>Don’t have an account?</GrayText>
+
+            <AuthLinkText
+                to={`/${RouteNames.AUTH}/${RouteNames.REGISTER}`}
+                state={{ from: location }}
+            >
+                Sign Up
+            </AuthLinkText>
+
+        </AuthBodyWrapperStyled>
+    )
+}
