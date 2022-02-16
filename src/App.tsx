@@ -42,25 +42,26 @@ function App() {
     }
 
     return (
-        <div className="app-wrapper">
+        <div className="app-wrapper _container">
             <Routes>
                 <Route path={RouteNames.HOME} element={<Layout />}>
                     <Route element={<ProtectedRoutes />}>
                         <Route index element={<HomePage />} />
                         <Route path={RouteNames.PROFILE} element={<ProfilePage />} />
                     </Route>
-                    <Route path={RouteNames.AUTH} element={<AuthContainer />}>
-                        <Route path={RouteNames.LOGIN} element={<LoginPage />} />
-                        <Route path={RouteNames.REGISTER} element={<RegisterPage />} />
-                        <Route path={RouteNames.RECOVERY} element={<RecoveryPassPage />} />
-                        <Route path={RouteNames.EMAIL_SEND_PAGE} element={<EmailSendPage />} />
-                        <Route path={RouteNames.NEW_PASSWORD} element={<CreateNewPassPage />} />
-                    </Route>
-                    <Route path={RouteNames.UI_KIT} element={<UiKitPage />} />
-
-                    <Route path={RouteNames.PAGE_NOT_FOUND} element={<PageNotFound />} />
-                    <Route path="/*" element={<Navigate to={RouteNames.PAGE_NOT_FOUND} />} />
                 </Route>
+                <Route path={RouteNames.AUTH} element={<AuthContainer />}>
+                    <Route path={RouteNames.LOGIN} element={<LoginPage />} />
+                    <Route path={RouteNames.REGISTER} element={<RegisterPage />} />
+                    <Route path={RouteNames.RECOVERY} element={<RecoveryPassPage />} />
+                    <Route path={RouteNames.EMAIL_SEND_PAGE} element={<EmailSendPage />} />
+                    <Route path={RouteNames.NEW_PASSWORD} element={<CreateNewPassPage />} />
+                </Route>
+                <Route path={RouteNames.UI_KIT} element={<UiKitPage />} />
+
+                <Route path={RouteNames.PAGE_NOT_FOUND} element={<PageNotFound />} />
+                <Route path="/*" element={<Navigate to={RouteNames.PAGE_NOT_FOUND} />} />
+
             </Routes>
         </div>
     )

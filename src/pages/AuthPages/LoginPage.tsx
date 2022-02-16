@@ -27,14 +27,14 @@ const LoginBtn = styled(Button)`
   margin-bottom: 30px;
 `
 const LoginFormWrapper = styled(FormWrapper)`
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 `
 
 const Forgot = styled(Link)`
   margin-left: auto;
   font-size: 14px;
   line-height: 17px;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   &:hover{
     color: #21268f;
   }

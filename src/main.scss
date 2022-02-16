@@ -21,6 +21,7 @@ h2{
 }
 
 ._container {
+  width: 100%;
   max-width: 1038px;
   margin: 0 auto;
   padding: 0 15px;
@@ -35,6 +36,7 @@ h2{
 }
 
 .main {
+  padding-top: 80px;
   width: 100%;
   display: flex;
   flex: 1 1 auto;
