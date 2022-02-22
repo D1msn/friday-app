@@ -18,7 +18,7 @@ export const StyledInput = styled.input<{ password?: boolean }>`
   color: #2D2E46;
   background-color: transparent;
   height: 40px;
-  padding: 5px 0 5px 0;
+  padding: 5px;
   border: 0;
   border-bottom: 1px solid #24254a59;
   transition: 0.3s all ease;

@@ -12,6 +12,7 @@ body {
   height: 100%;
   min-width: 400px;
   font-size: 14px;
+  color: #2D2E46;
 }
 
 ul {
@@ -22,3 +23,22 @@ a {
   color: inherit;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #c7c7c7;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

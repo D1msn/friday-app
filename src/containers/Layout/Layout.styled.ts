@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Link, NavLink } from 'react-router-dom'
+import Button from '../../components/common/Button/Button'
 
 export const StyledHeader = styled.header`
   display: flex;
@@ -16,6 +17,10 @@ export const StyledHeader = styled.header`
 `
 
 export const MainHeader = styled.header`
+  padding: 10px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -23,15 +28,8 @@ export const MainHeader = styled.header`
   height: 60px;
   background-color: #EBE0E9;
 `
-export const MainHeaderWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;  
-`
 
 export const HeaderLogo = styled(Link)`
-  flex-grow: 1;
   font-weight: 600;
   font-size: 26px;
   line-height: 39px;
@@ -39,9 +37,10 @@ export const HeaderLogo = styled(Link)`
 `
 
 export const HeaderMenu = styled.ul`
-  flex-grow: 2;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-grow: 1;
 `
 
 export const HeaderMenuItem = styled.li`
@@ -77,4 +76,18 @@ export const HeaderMenuLink = styled(NavLink)`
     border-bottom-color: #21268F;
     background-color: #DCCCDB;
   }
+`
+export const ButtonLogout = styled(Button)`
+  background-color: #21268f;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  font-size: 13px;
+`
+
+export const HeaderName = styled.p`
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
 `

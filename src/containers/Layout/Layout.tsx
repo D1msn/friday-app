@@ -5,15 +5,34 @@ import { StyledNavLinkStyled } from '../../styles/StyledNavLink.styled'
 import { ReactComponent as CardsSvg } from '../../assets/image/cards.svg'
 import { ReactComponent as ProfileSvg } from '../../assets/image/profile.svg'
 import {
-    HeaderLogo, MainHeader, StyledHeader, HeaderMenuItem, HeaderMenuLink, HeaderMenu, MainHeaderWrapper,
+    ButtonLogout,
+    HeaderLogo,
+    HeaderMenu,
+    HeaderMenuItem,
+    HeaderMenuLink, HeaderName,
+    MainHeader,
+    StyledHeader,
 } from './Layout.styled'
+import { useLogoutUserMutation } from '../../core/api/auth-api/auth-api'
+import { useActions } from '../../core/hooks/useActions'
+import { useTypedSelector } from '../../core/hooks/useTypedSelector'
+import { IUser } from '../../core/types/authModel.types'
 
-export const Layout = () => (
-    <>
-        <MainHeader>
-            <MainHeaderWrapper className="_container">
+export const Layout = () => {
+    const [logOut] = useLogoutUserMutation()
+    const { setDefaultUser } = useActions()
+    const { name } = useTypedSelector(state => state.userReducer.userInfo as IUser)
+
+    const onLogOut = () => {
+        logOut({})
+        setDefaultUser()
+    }
+
+    return (
+        <>
+            <MainHeader>
                 <HeaderLogo to={RouteNames.HOME}>
-                IT-INCUBATOR
+                    IT-INCUBATOR
                 </HeaderLogo>
                 <HeaderMenu>
                     <HeaderMenuItem>
@@ -29,14 +48,19 @@ export const Layout = () => (
                         </HeaderMenuLink>
                     </HeaderMenuItem>
                 </HeaderMenu>
-            </MainHeaderWrapper>
-        </MainHeader>
+                <div>
+                    <HeaderName>{name}</HeaderName>
+                    <ButtonLogout onClick={onLogOut}>LOGOUT</ButtonLogout>
+                </div>
 
-        <div className="main _container">
-            <Outlet />
-        </div>
-    </>
-)
+            </MainHeader>
+
+            <div className="main _container">
+                <Outlet />
+            </div>
+        </>
+    )
+}
 
 const Header = () => (
     <StyledHeader>

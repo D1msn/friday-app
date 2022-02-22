@@ -50,6 +50,53 @@ h2{
   user-select: none;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.custom-radio input:checked ~ .checkmark {
+  background-color: #9A91C8;
+  color: #fff;
+}
+
+.custom-radio{
+  display: flex;
+
+  label{
+    width: 100%;
+    &:first-child{
+      .checkmark{
+        border-radius: 4px 0 0 4px;
+      }
+    }
+    &:last-child{
+      .checkmark{
+        border-radius: 0 4px 4px 0;
+      }
+    }
+  }
+
+  .checkmark{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    background-color: #FFFFFF;
+    width: 100%;
+    max-height: 36px;
+  }
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -58,3 +105,5 @@ h2{
     transform: rotate(360deg);
   }
 }
+
+@import "./styles/scss/table";
