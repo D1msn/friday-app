@@ -3,12 +3,24 @@ import { IUser } from '../../../types/authModel.types'
 
 type InitialStateType = {
     isAuth: boolean
-    userInfo: IUser | {}
+    userInfo: IUser
 }
 
 const initialState: InitialStateType = {
     isAuth: false,
-    userInfo: {},
+    userInfo: {
+        _id: '',
+        avatar: '',
+        name: '',
+        created: '',
+        email: '',
+        error: '',
+        isAdmin: false,
+        publicCardPacksCount: 0,
+        rememberMe: false,
+        updated: '',
+        verified: false,
+    },
 }
 
 export const userSlice = createSlice({
@@ -21,7 +33,7 @@ export const userSlice = createSlice({
         },
         setDefaultUser: (state) => {
             state.isAuth = false
-            state.userInfo = {}
+            state.userInfo = initialState.userInfo
         },
     },
 })

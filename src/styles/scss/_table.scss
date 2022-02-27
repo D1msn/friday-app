@@ -10,6 +10,7 @@
     background-color: #ECECF9;
 
     .table__cell{
+      word-break: break-word;
       font-weight: 700;
       font-size: 13px;
       line-height: 16px;
@@ -24,8 +25,18 @@
   &__row{
     display: grid;
     padding: 16px 24px;
-    grid-template-columns: 3fr 1fr 2fr 2fr 3fr;
-    gap: 10px;
+    grid-template-columns: minmax(20%, 2fr) minmax(10%, 1fr) minmax(15%, 2fr) minmax(19%, 1fr) minmax(27%, 3fr);
+    gap: 20px;
+
+    .table__cell{
+      word-break: break-word;
+
+      &.actions{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+      }
+    }
 
     &:nth-child(2n){
       background-color: #F8F7FD;

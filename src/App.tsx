@@ -22,6 +22,7 @@ import { EmailSendPage } from './pages/AuthPages/EmailSendPage'
 import { ProtectedRoutes } from './routes/ProtectedRoutes'
 import { useCheckUserMutation } from './core/api/auth-api/auth-api'
 import { useActions } from './core/hooks/useActions'
+import { HomePageCard } from './pages/HomePage/HomePageCard'
 
 const date = Date.now()
 
@@ -48,6 +49,7 @@ function App() {
                     <Route element={<ProtectedRoutes />}>
                         <Route index element={<HomePage />} />
                         <Route path={RouteNames.PROFILE} element={<ProfilePage />} />
+                        <Route path={`${RouteNames.HOME}:id`} element={<HomePageCard />} />
                     </Route>
                 </Route>
                 <Route path={RouteNames.AUTH} element={<AuthContainer />}>

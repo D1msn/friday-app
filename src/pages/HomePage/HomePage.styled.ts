@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Button from '../../components/common/Button/Button'
 
 export const HomeWrapper = styled.div`
   max-height: 636px;
@@ -38,4 +39,16 @@ export const FilterTitle = styled.p`
 
 export const FilterWrapper = styled.div`
   margin-bottom: 40px;
+`
+
+export const ActionsButton = styled(Button)`
+  &&{
+    box-shadow: none;
+    text-shadow: none;
+  }
+
+  border-radius: 5px;
+  padding: 6px;
+  min-width: max-content;
+  height: max-content;
 `
