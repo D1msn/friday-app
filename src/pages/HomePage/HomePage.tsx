@@ -10,7 +10,7 @@ import {
     useAddCardsPackMutation,
     useDeleteCardsPackMutation,
     useGetCardsPacksQuery, useUpdateCardsPackNameMutation,
-} from '../../core/api/cards-api/packs-api'
+} from '../../core/api/packs-api/packs-api'
 
 import { ICardsPack } from '../../core/types/cardsPacksModels.types'
 import { useTypedSelector } from '../../core/hooks/useTypedSelector'
@@ -25,7 +25,7 @@ export const HomePage = () => {
     const debouncedSearchQuery = useDebounce(searchQuery, 800)
 
     const { data, isLoading, isError } = useGetCardsPacksQuery({
-        count: 5,
+        count: 20,
         userId: showAllPacks,
         debouncedSearchQuery,
     })

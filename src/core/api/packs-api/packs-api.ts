@@ -1,15 +1,10 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
-import { ApiConfig } from '../../constants/ApiConfig'
+import { ApiConfig, CardsApiUrls } from '../../constants/ApiConfig'
 import { ResponceGetCardsPackType } from '../../types/cardsPacksModels.types'
 
-enum CardsApiUrls {
-    CARDS_PACK = '/cards/pack',
-    CARDS_CARD = '/cards/card',
-}
-
 export const packsApi = createApi({
-    reducerPath: 'CardsApi',
+    reducerPath: 'PacksApi',
     tagTypes: ['Packs'],
     baseQuery: fetchBaseQuery({ baseUrl: ApiConfig.BASE_URL, credentials: 'include' }),
     endpoints: (build) => ({
