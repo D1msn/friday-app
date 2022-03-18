@@ -9,9 +9,9 @@ export const packsApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: ApiConfig.BASE_URL, credentials: 'include' }),
     endpoints: (build) => ({
         getCardsPacks: build.query<ResponceGetCardsPackType, {
-            count:number, userId:string, debouncedSearchQuery: string
+            count:number, userId:string, debouncedSearchQuery: string, page: number
         }>({
-            query: (body) => `${CardsApiUrls.CARDS_PACK}?pageCount=${body.count}&user_id=${body.userId}&packName=${body.debouncedSearchQuery}`,
+            query: (body) => `${CardsApiUrls.CARDS_PACK}?pageCount=${body.count}&page=${body.page}&user_id=${body.userId}&packName=${body.debouncedSearchQuery}`,
             providesTags: (result) => (result
                 ? [
                     ...result.cardPacks.map(({ _id }) => ({ type: 'Packs', _id } as const)),

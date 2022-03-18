@@ -8,7 +8,6 @@ export const grayText = css`
   opacity: 0.5;
 `
 export const SearchInput = styled(InputText)`
-  max-width: 64%;
   background: #ECECF9;
   opacity: 0.5;
   border: 1px solid #635D80;

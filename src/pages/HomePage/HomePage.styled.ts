@@ -51,4 +51,10 @@ export const ActionsButton = styled(Button)`
   padding: 6px;
   min-width: max-content;
   height: max-content;
+  
+  &.add{
+    margin-left: 70px;
+    width: 44%;
+    height: 100%;
+  }
 `

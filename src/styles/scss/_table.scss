@@ -28,6 +28,10 @@
     grid-template-columns: minmax(20%, 2fr) minmax(10%, 1fr) minmax(15%, 2fr) minmax(19%, 1fr) minmax(27%, 3fr);
     gap: 20px;
 
+    &.not-my{
+      grid-template-columns: minmax(25%, 3fr) minmax(30%, 3fr) minmax(20%, 2fr) minmax(18%, 1fr);
+    }
+
     .table__cell{
       word-break: break-word;
 

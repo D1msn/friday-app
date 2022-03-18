@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { formatDate } from '../../core/utils/dates'
+import { Pagination } from '../../components/Pagination/Pagination'
 
 import {
     HomeWrapper, HomeBody, SideBarFilters, FilterTitle, FilterWrapper, HomeTitle, ActionsButton,
@@ -16,22 +17,28 @@ import { ICardsPack } from '../../core/types/cardsPacksModels.types'
 import { useTypedSelector } from '../../core/hooks/useTypedSelector'
 import { useDebounce } from '../../core/hooks/useDebounce'
 import { SearchInput } from '../../styles/utils.styles'
-import { RouteNames } from '../../routes'
 
 export const HomePage = () => {
     const myId = useTypedSelector<string>(state => state.userReducer.userInfo._id)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [showInPage, setShowInPage] = useState(10)
     const [showAllPacks, setShowAllPacks] = useState('')
     const [searchQuery, setSearchQuery] = useState('')
-    const debouncedSearchQuery = useDebounce(searchQuery, 800)
+    const debouncedSearchQuery = useDebounce<string>(searchQuery, 800)
 
-    const { data, isLoading, isError } = useGetCardsPacksQuery({
-        count: 20,
+    const {
+        data, isLoading, isError, isFetching,
+    } = useGetCardsPacksQuery({
+        count: showInPage,
         userId: showAllPacks,
         debouncedSearchQuery,
+        page: currentPage,
     })
     const [deletePack] = useDeleteCardsPackMutation()
     const [addPack] = useAddCardsPackMutation()
     const [editPackName] = useUpdateCardsPackNameMutation()
+
+    console.log(data)
 
     const onEditPackName = (_id: string) => {
         editPackName({
@@ -111,12 +118,12 @@ export const HomePage = () => {
                     />
                     <ActionsButton
                         onClick={onAddPack}
-                        style={{ width: '28%', height: '100%' }}
+                        className="add"
                     >
                     Add pack
                     </ActionsButton>
                 </div>
-                <div className="table">
+                <div style={{ marginBottom: 30 }} className="table">
                     <div className="table__header">
                         <div className="table__row">
                             <div className="table__cell">
@@ -140,7 +147,7 @@ export const HomePage = () => {
                         : (
                             <div className="table__body">
                                 {data.cardPacks.map((pack:ICardsPack) => (
-                                    <Link to={`/${pack._id}`} className="table__row" key={pack._id}>
+                                    <Link to={`/${pack._id}`} state={{ fromPack: pack.name }} className="table__row" key={pack._id}>
                                         <div className="table__cell">
                                             {pack.name}
                                         </div>
@@ -172,8 +179,32 @@ export const HomePage = () => {
                                 ))}
                             </div>
                         )}
-
                 </div>
+
+                {data && (
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <Pagination
+                            pageCount={data.cardPacksTotalCount / data.pageCount}
+                            pageRangeDisplayed={2}
+                            onChange={(selected) => setCurrentPage(selected)}
+                            currentPage={data.page}
+                            disabled={isFetching}
+                        />
+                        <div className="select">
+                        Show
+
+                            <select name="onPage" value={showInPage} onChange={(e) => setShowInPage(+e.currentTarget.value)}>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+
+                        Cards per Page
+
+                        </div>
+                    </div>
+                )}
 
             </HomeBody>
         </HomeWrapper>
