@@ -1,0 +1,17 @@
+.buttons{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  gap: 20px;
+
+  button{
+    width: 100%;
+    box-shadow: none;
+  }
+
+}
+
+.input{
+  margin-top: 15px;
+}

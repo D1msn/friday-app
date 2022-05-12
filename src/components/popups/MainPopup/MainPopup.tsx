@@ -4,12 +4,12 @@ import OverlayingPopup from '../OverlayingPopup/OverlayingPopup'
 
 import styles from './MainPopup.module.scss'
 
-type PopupPropsType = {
+export type PopupPropsType = {
 	title: string
 	children: any
 	onClose: () => void
 	isOpened: boolean
-	className: string
+	className?: string
 }
 
 const MainPopup = ({

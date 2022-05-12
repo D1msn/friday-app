@@ -17,6 +17,7 @@ import { ICardsPack } from '../../core/types/cardsPacksModels.types'
 import { useTypedSelector } from '../../core/hooks/useTypedSelector'
 import { useDebounce } from '../../core/hooks/useDebounce'
 import { SearchInput } from '../../styles/utils.styles'
+import { InputPopup } from '../../components/popups/InputPopup/InputPopup'
 
 export const HomePage = () => {
     const myId = useTypedSelector<string>(state => state.userReducer.userInfo._id)
@@ -25,6 +26,7 @@ export const HomePage = () => {
     const [showAllPacks, setShowAllPacks] = useState('')
     const [searchQuery, setSearchQuery] = useState('')
     const debouncedSearchQuery = useDebounce<string>(searchQuery, 800)
+    const [isOpenModal, setIsOpenModal] = useState(true)
 
     const {
         data, isLoading, isError, isFetching,
@@ -37,8 +39,6 @@ export const HomePage = () => {
     const [deletePack] = useDeleteCardsPackMutation()
     const [addPack] = useAddCardsPackMutation()
     const [editPackName] = useUpdateCardsPackNameMutation()
-
-    console.log(data)
 
     const onEditPackName = (_id: string) => {
         editPackName({
@@ -53,10 +53,10 @@ export const HomePage = () => {
         deletePack(id)
     }
 
-    const onAddPack = () => {
+    const onSubmitModal = (text: string) => {
         addPack({
             cardsPack: {
-                name: prompt(),
+                name: text,
                 private: false,
             },
         })
@@ -117,7 +117,7 @@ export const HomePage = () => {
                         placeholder="Search....."
                     />
                     <ActionsButton
-                        onClick={onAddPack}
+                        onClick={() => setIsOpenModal(true)}
                         className="add"
                     >
                     Add pack
@@ -207,6 +207,12 @@ export const HomePage = () => {
                 )}
 
             </HomeBody>
+            <InputPopup
+                title="Enter pack name"
+                onClose={() => setIsOpenModal(p => !p)}
+                isOpened={isOpenModal}
+                onSubmit={onSubmitModal}
+            />
         </HomeWrapper>
     )
 }

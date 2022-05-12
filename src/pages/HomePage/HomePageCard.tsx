@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import styled from 'styled-components'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
@@ -45,6 +45,8 @@ export const HomePageCard = () => {
 
     const { fromPack } = useLocation().state as LocationState
     const navigate = useNavigate()
+
+    const [isOpenModal, setIsOpenModal] = useState(false)
 
     if (isError) {
         return <div>Что то пошло не так</div>
@@ -152,9 +154,8 @@ export const HomePageCard = () => {
                         )}
 
                 </div>
-
             </HomeBody>
-            <MainPopup title="asdasd" onClose={() => {}} isOpened className="asdd111">123123</MainPopup>
+            <MainPopup title="123123" onClose={() => setIsOpenModal(p => !p)} isOpened={isOpenModal} className="asdd111">123123</MainPopup>
         </HomeWrapper>
     )
 }
